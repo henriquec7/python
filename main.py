@@ -1,38 +1,56 @@
-name = input("Digite seu nome: ")
-print(f"Olá, seja bem-vindo {name}!")
+import random
 
-idade = int(input("Agora digite para mim a sua idade: "))
-print(f"Uau! você tem {idade} anos, que legal!")
+print("Olá! Escolha 0 para pedra, 1 para papel e 2 para tesoura")
 
-print("Agora peço que você efetue um cálculo, ok?")
-num1 = float(input("Digite o primeiro número: "))
-num2 = float(input("Digite o segundo número: "))
+pedra = ''' 
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+'''
 
-print("Escolha a operação que deseja realizar:")
-print(" + para adição")
-print(" - para subtração")
-print(" * para multiplicação")
-print(" / para divisão")
+papel = '''
+    _______
+---'   ____)____
+          ______)
+          _______)
+         _______)
+---.__________)
+'''
 
-operacao = input("Digite a operação desejada: ")
+tesoura = '''
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+'''
+imagens_jogo = [pedra, papel, tesoura]
 
-if operacao == "+":
-    resultado = num1 + num2
-    print(f"Resultado da adição: {resultado}")
-elif operacao == "-":
-    resultado = num1 - num2
-    print(f"Resultado da subtração: {resultado}")
-elif operacao == "*":
-    resultado = num1 * num2
-    print(f"Resultado da multiplicação: {resultado}")
-    if resultado == resultado:
-        print(f"o resultado é: {resultado}")
-    
-elif operacao == "/":
-    if num2 != 0:
-        resultado = num1 / num2
-        print(f"Resultado da divisão: {resultado}")
-    else:
-        print("Erro: Divisão por zero não é permitida.")
+
+sua_escolha = int(input("Sua escolha:"))
+if sua_escolha >= 0 and sua_escolha <=2:
+    print(imagens_jogo[sua_escolha])
+maquina_escolha = random.randint(0, 2)
+print(f"A maquina escolheu: {maquina_escolha}")
+print(imagens_jogo[maquina_escolha])
+
+if sua_escolha >=3 or sua_escolha <0:
+    print("Esse número não existe, você perdeu")
+if sua_escolha == 0 and maquina_escolha == 2:
+    print("Você venceu!")
+elif maquina_escolha == 0 and sua_escolha == 2:
+    print("Você perdeu")
+elif maquina_escolha > sua_escolha:
+    print("A maquina ganhou")
+elif sua_escolha > maquina_escolha:
+    print("Você ganhou")
+elif maquina_escolha == sua_escolha:
+    print("Empate")
+
+
 else:
-    print("Operação inválida. Por favor, tente novamente.")
+    print("Você digitou um número inexistente, Você perdeu!")
